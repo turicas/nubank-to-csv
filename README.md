@@ -50,3 +50,14 @@ Converter de HTML para CSV:
     python nubank.py XXXs.html minha-linda-fatura.csv
 
 Agora é só brincar com o arquivo `minha-linda-fatura.csv`! ;-)
+
+
+## Contribua!
+
+O software é livre e você pode contribuir. :) Sugestões de contribuição:
+
+- Criar função para já rodar o `pdftohtml` automaticamente, de forma que
+  precisemos rodar apenas um comando (o próprio `nubank-to-csv`).
+- Criar um aplicativo Web simples em que seja possível fazer o upload do PDF e
+  o download do CSV convertido.
+

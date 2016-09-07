@@ -68,15 +68,20 @@ def html_to_table(input_filename, encoding='utf-8'):
             new.append(element.text)
     data = new
 
-    chunks = list(partition(data, 4))
+    chunks = [[value.strip() for value in row]
+              for row in partition(data, 4) if len(row) == 4]
     table = rows.Table(fields=FIELDS)
     current_year = datetime.datetime.now().year
     months = set(extract_month(row) for row in chunks)
     subtract_year = 'DEZ' in months and 'JAN' in months
     for row in chunks:
-        category = convert_text(row[0])
-        description = convert_text(row[1])
-        value = convert_value(row[2])
+        try:
+            category = convert_text(row[0])
+            description = convert_text(row[1])
+            value = convert_value(row[2])
+        except:
+            print('WARNING: Ignoring row: {}'.format(row))
+            continue
         year = current_year
         month = extract_month(row)
         if subtract_year and month in ('NOV', 'DEZ'):
